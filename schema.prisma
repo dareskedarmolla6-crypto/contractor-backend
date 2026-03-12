@@ -1,0 +1,38 @@
+// ይህንን ሙሉ በሙሉ ገልብጠህ schema.prisma ፋይል ላይ ለጥፈው
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Contractor {
+  id           String    @id @default(uuid())
+  fullName     String
+  phone        String?
+  email        String?
+  companyName  String?
+  createdAt    DateTime  @default(now())
+  invoices     Invoice[]
+}
+
+model Invoice {
+  id            String   @id @default(uuid())
+  invoiceNumber String   @unique
+  description   String?
+  amount        Decimal
+  currency      String   @default("USD")
+  status        String   @default("pending")
+  issuedDate    DateTime @default(now())
+  contractorId  String
+  contractor    Contractor @relation(fields: [contractorId], references: [id])
+}
+
+model GpsHistory {
+  id        String   @id @default(uuid())
+  latitude  Float
+  longitude Float
+  timestamp DateTime @default(now())
+}
