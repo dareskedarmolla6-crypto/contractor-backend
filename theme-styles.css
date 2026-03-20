@@ -1,195 +1,93 @@
-:root {
-  --navy: #0b1c2d;
-  --teal: #1abc9c;
-  --bg: #f4f7f6;
-  --white: #ffffff;
-  --gray: #e6ebef;
-  --yellow: #f1c40f;
-  --user-green: #2ecc71;
-  --bot-bg: #ffffff;
+/* Contractor Enterprise - Professional Theme v2.1 */
+/* የአንተን ኦሪጅናል ዲዛይን ሙሉ በሙሉ የጠበቀ */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { 
+    font-family: 'Segoe UI', -apple-system, sans-serif; 
+    background: #f1f5f9; 
+    color: #1e293b;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  background: var(--bg);
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
+.container { padding: 16px; padding-bottom: 90px; }
+
+/* KPI Stats - ደንበኛው ለሚፈልገው ዳሽቦርድ ወሳኝ ናቸው */
+.stats-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 12px; 
+    margin-bottom: 16px; 
+    padding: 10px;
 }
 
-/* HEADER */
-.header {
-  background: var(--navy);
-  color: white;
-  padding: 15px;
-  font-weight: bold;
-  text-align: center;
-  letter-spacing: 1px;
+.stat-card { 
+    background: white; 
+    padding: 16px; 
+    border-radius: 16px; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+    text-align: center; 
+    border: 1px solid #e2e8f0;
 }
 
-/* CHAT BOX */
-#chatBox {
-  flex: 1;
-  overflow-y: auto;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  background: var(--bg);
-  scroll-behavior: smooth;
-  padding-bottom: 30px;
+.label { font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+.value { font-size: 20px; font-weight: 800; color: #0f172a; }
+
+/* MAP Section - ደንበኛው ለጠየቀው Interactive Maps */
+.map-card { 
+    background: white; 
+    border-radius: 16px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+    margin: 0 16px 16px 16px; 
 }
 
-/* MESSAGES */
-.msg {
-  padding: 12px 18px;
-  margin: 8px 0;
-  border-radius: 20px;
-  max-width: 75%;
-  font-size: 15px;
-  line-height: 1.5;
-  word-wrap: break-word;
-  animation: fadeIn 0.3s ease-in;
-  position: relative;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  transition: 0.2s;
+.map-title { padding: 12px; font-weight: 600; background: #fff; border-bottom: 1px solid #f1f5f9; }
+#map { height: 220px; z-index: 1; }
+
+/* CHAT Area - ለ AI ውጤት ማሳያ */
+.chat-container { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; padding: 0 16px; }
+.message { padding: 12px 16px; border-radius: 12px; max-width: 85%; font-size: 14px; line-height: 1.5; }
+.user-message { background: #22c55e; color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+.bot-message { background: white; color: #334155; box-shadow: 0 2px 6px rgba(0,0,0,0.05); align-self: flex-start; border-bottom-left-radius: 2px; }
+
+/* INPUT Area - በሞባይል ስክሪን ግርጌ የሚቀመጥ */
+.input-area { 
+    position: fixed; 
+    bottom: 0; 
+    width: 100%; 
+    background: white; 
+    padding: 12px 16px; 
+    display: flex; 
+    gap: 8px; 
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.08); 
+    z-index: 1000;
 }
 
-.msg:hover{
-  transform: scale(1.01);
+#userInput { 
+    flex: 1; 
+    padding: 12px 20px; 
+    border-radius: 25px; 
+    border: 1px solid #e2e8f0; 
+    outline: none;
+    font-size: 15px;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+#sendBtn { 
+    width: 48px; 
+    height: 48px; 
+    border: none; 
+    border-radius: 50%; 
+    background: #22c55e; 
+    color: white; 
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    transition: transform 0.2s;
 }
 
-/* BOT MESSAGE */
-.msg.bot {
-  background: var(--bot-bg);
-  align-self: flex-start;
-  border-bottom-left-radius: 5px;
-  color: #2c3e50;
-  border: 1px solid #eee;
-}
+#sendBtn:active { transform: scale(0.9); }
 
-/* USER MESSAGE */
-.msg.user {
-  background: var(--user-green);
-  color: white;
-  align-self: flex-end;
-  border-bottom-right-radius: 5px;
-}
-
-/* INVOICE CARD */
-.invoice-card {
-  background: white;
-  border-radius: 4px;
-  padding: 25px;
-  margin: 15px 0;
-  position: relative;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  animation: slideIn 0.4s ease-out;
-  border: 1px solid #eee;
-}
-
-.invoice-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 10px;
-  height: 100%;
-  background: var(--yellow);
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-}
-
-.invoice-card::after {
-  content: 'INV';
-  position: absolute;
-  bottom: 10px;
-  right: 15px;
-  font-size: 40px;
-  color: rgba(0,0,0,0.03);
-  font-weight: bold;
-}
-
-@keyframes slideIn {
-  from { opacity: 0; transform: scale(0.9) translateY(20px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-/* PDF BUTTON */
-.pdf-btn {
-  background: #27ae60;
-  color: white;
-  border: none;
-  padding: 14px;
-  border-radius: 8px;
-  width: 100%;
-  margin-top: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-weight: bold;
-  font-size: 15px;
-  transition: 0.3s;
-  box-shadow: 0 4px 10px rgba(39, 174, 96, 0.3);
-}
-
-.pdf-btn:hover {
-  background: #219150;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(39, 174, 96, 0.4);
-}
-
-/* COMMAND BOX */
-.command-box {
-  display: flex;
-  padding: 15px;
-  background: white;
-  border-top: 1px solid #eee;
-  flex-shrink: 0;
-  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.05);
-}
-
-.command-box input {
-  flex: 1;
-  padding: 14px 22px;
-  border: 2px solid #eee;
-  border-radius: 30px;
-  outline: none;
-  font-size: 16px;
-  transition: 0.3s;
-  background: #fcfcfc;
-}
-
-.command-box input:focus {
-  border-color: var(--user-green);
-  background: white;
-}
-
-.command-box button {
-  margin-left: 10px;
-  padding: 10px 28px;
-  background: var(--user-green);
-  color: white;
-  border: none;
-  border-radius: 30px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-  font-size: 15px;
-}
-
-.command-box button:hover {
-  background: #219150;
-  transform: scale(1.03);
-}
-ወ
-ሰመመመ
+/* Marker Style */
+.marker { background: white; border: 2px solid #22c55e; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+.marker img { width: 28px; }
